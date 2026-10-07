@@ -33,6 +33,8 @@ the verb prints the path.
    `GXUI_CLIENT_TIMEOUT` alone); don't background them and poll. Verbs fail with a non-zero exit, so **chain the steps you would not check in between**:
    `gxui history-new X && gxui upload-url URL --ext fastqsanger && gxui history-items`.
    `workflow-extract NAME --input-names LABEL --exclude-hids HID` does a whole extraction.
+   `history-switch NAME` makes a history current; `collection-build list|list:paired HIDS --name N`
+   builds a collection (`history-wait` on a collection also waits for its elements' jobs).
    `history-share` gives the current history a link; `dataset-copy HID --source HISTORY` copies
    an item from another history into the current one (Multiview drag). `dataset-rerun HID` opens
    the job's rerun form with its settings; change it with `tool-fill`, submit with `tool-run`.
