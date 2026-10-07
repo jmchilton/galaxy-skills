@@ -90,3 +90,10 @@ If the user asks about one of these tasks, use the corresponding skill:
   - `tool-dev/tool-selection-diagram/SKILL.md` (generate tool selection flowchart diagrams)
 
 For general discovery of what's available, start at `README.md`.
+
+## Galaxy UI Driving
+
+If the user asks to work through a GTN tutorial or workflow in Galaxy's web UI as a user would, or to reproduce a UI behaviour in a live Galaxy:
+
+- Skill:
+  - `galaxy-ui-driver/SKILL.md` (the `gxui` CLI over Galaxy's test framework; experimental)

@@ -130,6 +130,16 @@ Add or update ToolShed tool revisions in the [usegalaxy-tools](https://github.co
 - Handle adds, updates, moves, and removals across sections
 - Lint with `fix_lockfile.py`
 
+### Galaxy UI Driving
+
+**galaxy-ui-driver** 🚧
+
+Drive a live Galaxy web UI through Galaxy's own test vocabulary with the `gxui` CLI (experimental).
+
+- Verbs backed by Galaxy's `NavigatesGalaxy` test methods
+- `navigation.yml` components with Galaxy's waits
+- playwright-cli on the same browser as the escape hatch
+
 ### Collection Manipulation
 
 **collection-manipulation** ✅
