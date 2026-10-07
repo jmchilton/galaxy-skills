@@ -27,12 +27,13 @@ the verb prints the path.
    *submitted* (follow with `history-wait`). `history-wait` and uploads wait up to `--timeout`
    seconds (default 240) and fail at once on an error state; a timeout means still running - check
    `history-items` before retrying, so you don't upload twice.
-   **Wait for each gxui command to exit** - give it minutes, not seconds; don't background it and
-   poll. Verbs fail with a non-zero exit, so **chain the steps you would not check in between**:
+   **Wait for each gxui command to exit** - if your shell tool has a timeout or yield setting, set
+   it to 300 s for gxui calls; don't background them and poll. Verbs fail with a non-zero exit, so **chain the steps you would not check in between**:
    `gxui history-new X && gxui upload-url URL --ext fastqsanger && gxui history-items`.
    `workflow-extract NAME --input-names LABEL --exclude-hids HID` does a whole extraction.
    `history-share` gives the current history a link; `dataset-copy HID --source HISTORY` copies
-   an item from another history into the current one (Multiview drag).
+   an item from another history into the current one (Multiview drag). `dataset-rerun HID` opens
+   the job's rerun form with its settings; change it with `tool-fill`, submit with `tool-run`.
    Tool parameters: `gxui tool-describe` maps the open form's labels (what tutorials say) to paths,
    with options and the conditional case that shows each field; `gxui tool-fill '{"path": value}'`
    sets them (data fields take a hid; put a conditional's selector and its fields in one call).
