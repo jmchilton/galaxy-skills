@@ -28,18 +28,25 @@ the verb prints the path.
    seconds (default 240) and fail at once on an error state; a timeout means still running - check
    `history-items` before retrying, so you don't upload twice.
    **Wait for each gxui command to exit** - if your shell tool has a timeout or yield setting, set
-   it to 300 s for gxui calls; don't background them and poll. Verbs fail with a non-zero exit, so **chain the steps you would not check in between**:
+   it to 300 s for gxui calls (gxui's client gives up at 290 s, so it always answers first; leave
+   `GXUI_CLIENT_TIMEOUT` alone); don't background them and poll. Verbs fail with a non-zero exit, so **chain the steps you would not check in between**:
    `gxui history-new X && gxui upload-url URL --ext fastqsanger && gxui history-items`.
    `workflow-extract NAME --input-names LABEL --exclude-hids HID` does a whole extraction.
    `history-share` gives the current history a link; `dataset-copy HID --source HISTORY` copies
    an item from another history into the current one (Multiview drag). `dataset-rerun HID` opens
    the job's rerun form with its settings; change it with `tool-fill`, submit with `tool-run`.
+   Workflow editor: `workflow-new NAME` / `workflow-edit NAME`, then `workflow-add-input [KIND]`,
+   `workflow-add-tool TOOL_ID`, `workflow-connect 'STEP#output' 'STEP#input'`, `workflow-output`,
+   `workflow-save`; STEP is a label or the number `workflow-steps` prints (steps, terminals and
+   connections). An added or `workflow-step` step is open in the inspector, so `tool-describe` /
+   `tool-fill` work on it; `workflow-param-input STEP PATH` makes a parameter connectable.
+   Save before leaving the editor: gxui won't navigate away from unsaved changes.
    Tool parameters: `gxui tool-describe` maps the open form's labels (what tutorials say) to paths,
    with options and the conditional case that shows each field; `gxui tool-fill '{"path": value}'`
    sets them (data fields take a hid; put a conditional's selector and its fields in one call).
 2. **Components** - name UI elements from Galaxy's `navigation.yml`:
    `gxui components history_panel` browses; `gxui component 'history_panel.item(hid=3).title' click`
-   acts (click|check|uncheck|text|value|visible|absent|send-keys|clear-send-keys), with Galaxy's
+   acts (click|check|uncheck|text|value|visible|absent|send-keys|clear-send-keys|press KEY), with Galaxy's
    waits, up to `--timeout` (default 30 s). Use `check`/`uncheck` for styled checkboxes.
    A component `click` returns once the click lands, not when the work it starts (a rename, a
    new history, a save) has finished: confirm the result before the next step.
