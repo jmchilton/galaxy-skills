@@ -23,10 +23,11 @@ the verb prints the path.
 1. **Verbs** - `gxui history-new NAME`, `gxui upload-url URL... --ext fastqsanger`,
    `gxui tool-search NAME`, `gxui tool-open ID`, `gxui tool-run` (prints the output hids),
    `gxui history-wait HID`, `gxui workflow-run NAME --inputs '{"label": 1}' --params '{"label": 5}' --wait`
-   (`--wait` = `invocation-wait`: every output's hid and state), ...
+   (`--inputs` must name every data input; `--new-history NAME`; no NAME = the run form already
+   open; `--wait` = `invocation-wait ID`: every output's hid and state; `invocation-cancel ID`), ...
    A verb that returns has done what it says: uploads are `ok`, forms are rendered, `tool-run` has
-   *submitted* (follow with `history-wait`). `history-wait` and uploads wait up to `--timeout`
-   seconds (default 240) and fail at once on an error state; a timeout means still running - check
+   *submitted* (follow with `history-wait`). Waiting verbs take `--timeout` seconds (default 240)
+   for the whole verb and fail at once on an error state; a timeout means still running - check
    `history-items` before retrying, so you don't upload twice.
    **Wait for each gxui command to exit** - if your shell tool has a timeout or yield setting, set
    it to 300 s for gxui calls (gxui's client gives up at 290 s, so it always answers first; leave
