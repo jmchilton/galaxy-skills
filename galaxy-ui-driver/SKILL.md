@@ -15,6 +15,8 @@ the verb prints the path.
 
 - `gxui` (no args) prints the session status: Galaxy URL, CDP URL, transcript path. If it says
   "no gxui daemon" and you were not given one, run `gxui start --url <galaxy>`.
+- Logged out? `gxui login` signs in with the session's configured credentials or saved state. If it
+  asks for a password, stop and ask the user - never put a password in a command.
 - `gxui help` lists verbs by domain; `gxui help <verb>` shows arguments and the Galaxy method
   behind it. Read it before guessing a verb.
 
